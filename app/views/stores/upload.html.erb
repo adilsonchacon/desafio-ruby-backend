@@ -1,0 +1,13 @@
+<h1>Upload</h1>
+
+<% if !@error.nil? %>
+<div class="alert alert-danger" role="alert">
+  Error: <%= @error %>
+</div>
+<% else %>
+<div class="alert alert-success" role="alert">
+  Successfully uploaded and saved!
+</div>
+<% end %>
+
+<%= link_to 'Voltar', '/' %>

@@ -1,0 +1,58 @@
+
+
+<div class="row">
+  <div class="col">
+    <h2>Selecione uma loja</h2>
+    <% stores = Store.order('name') %>
+    <%= select_tag "store_id", options_from_collection_for_select(stores, "id", "name", params[:store_id]), { id: 'select-store', include_blank: true } %>
+  </div>
+  <div class="col">
+    <h2>Upload de arquivo CNAB</h2>
+    <%= form_tag('/upload', multipart: true, method: 'post') do -%>
+        <%= file_field_tag "file" %>
+        <%= submit_tag 'Upload' %>
+    <% end -%>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    &nbsp;
+  </div>
+</div>
+
+<% if !@current_store.nil? %>
+    <% orders = @current_store.orders %>
+    <% if orders.size > 0 %>
+        <% balance = @current_store.balance %>
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Data Hora</th>
+                <th>Valor</th>
+                <th>CPF</th>
+                <th>Cartão de Crédito</th>
+                <th>Loja</th>
+                <th>Dono da Loja</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @current_store.orders.each do |order| %>
+            <tr>
+                <td><%= order.transaction_type.description %></td>
+                <td><%= order.occurrence_date.strftime("%d/%m/%Y") %> <%= order.occurrence_time.strftime("%H:%M:%S") %></td>
+                <td><%= order.transaction_type.signal %><%= number_to_currency(order.occurrence_value, unit: "R$", separator: ",", delimiter: ".", format: "%u %n") %></td>
+                <td><%= order.recipient_credit_card.recipient.cpf %></td>
+                <td><%= order.recipient_credit_card.credit_card.number %></td>
+                <td><%= order.store_owner.store.name %></td>
+                <td><%= order.store_owner.owner.name %></td>
+            </tr>
+        <% end %>
+        </tbody>
+        </table>
+        <p>Saldo: <span><%= number_to_currency(balance, unit: "R$", separator: ",", delimiter: ".", format: "%u %n") %></span></p>
+    <% else %>
+    <h3>Nenhuma ocorrência encontrada na loja selecionada</h3>
+    <% end %>
+<% end %>

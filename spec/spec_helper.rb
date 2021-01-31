@@ -126,3 +126,16 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+
+def create_transaction_types
+  TransactionType.create(type_id:1, description: "Débito", nature: "Entrada", signal: "+")
+  TransactionType.create(type_id:2, description: "Boleto", nature: "Saída", signal:"-")
+  TransactionType.create(type_id:3, description: "Financiamento", nature: "Saída", signal:"-")
+  TransactionType.create(type_id:4, description: "Crédito", nature: "Entrada", signal:"+")
+  TransactionType.create(type_id:5, description: "Recebimento Empréstimo", nature: "Entrada", signal:"+")
+  TransactionType.create(type_id:6, description: "Vendas", nature: "Entrada", signal:"+")
+  TransactionType.create(type_id:7, description: "Recebimento TED", nature: "Entrada", signal:"+")
+  TransactionType.create(type_id:8, description: "Recebimento DOC", nature: "Entrada", signal:"+")
+  TransactionType.create(type_id:9, description: "Aluguel", nature: "Saída", signal: "-")
+end

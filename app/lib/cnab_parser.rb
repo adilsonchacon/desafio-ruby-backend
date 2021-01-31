@@ -7,17 +7,19 @@ class CnabParser
       self.file_path = file_path
     else
       self.file_path = nil
-      raise   CustomErrors::FileNotFoundException.new("File not found")
+      raise CustomErrors::FileNotFoundException.new("File not found")
     end
   end
 
   def parse
-    i = 1
+    i = 0
     begin
       File.read(self.file_path).split(/\n/).each do |line|
+        i = i + 1
+        next if line.strip == ''
         self.content.push(
           {
-            transacion_type: extract_transaction_type(line),
+            transaction_type: extract_transaction_type(line),
             occurrence_date: extract_occurrence_date(line),
             occurrence_value: extract_occurrence_value(line),
             recipient_cpf: extract_recipient_cpf(line),
@@ -27,7 +29,6 @@ class CnabParser
             store_name: extract_store(line),
           }
         )
-        i = i + 1
       end
     rescue Exception => e
       self.content = []
@@ -64,14 +65,14 @@ class CnabParser
     occurrence_value = line[9, 10].strip
     raise Exception.new('Value is invalid') if occurrence_value.match(/^\d{10}$/).nil?
 
-    return occurrence_value.to_f
+    occurrence_value.to_f / 100.0
   end
 
   def extract_recipient_cpf(line)
     recipient_cpf = line[19, 11].strip
     raise Exception.new('CPF is invalid') if recipient_cpf.match(/^\d{11}$/).nil?
 
-    recipient_cpf.to_i
+    recipient_cpf
   end
 
   def extract_credit_card_number(line)

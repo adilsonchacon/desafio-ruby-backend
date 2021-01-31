@@ -11,3 +11,14 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("jquery")
+require("selectize")
+
+$(document).on('turbolinks:load', function () {
+    $('#select-store').selectize();
+});
+
+$(document).on('change', '#select-store', function () {
+    window.location.href = "/?store_id=" + $('#select-store').val();
+});

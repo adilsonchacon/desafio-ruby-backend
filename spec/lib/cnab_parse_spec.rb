@@ -7,15 +7,15 @@ RSpec.describe CnabParser do
       cnab = CnabParser.new(valid_file)
       cnab.parse
 
-      expect { cnab.content.size == 21 }
-      expect { cnab.content[0][:transacion_type] == 3 }
-      expect { cnab.content[0][:occurrence_date].strftime('%d/%m/%Y') == '01/03/2019' }
-      expect { cnab.content[0][:occurrence_time].strftime('%H:%M:%S') == '15:34:53' }
-      expect { cnab.content[0][:occurrence_value] == 142.0 }
-      expect { cnab.content[0][:recipient_cpf] == '09620676017' }
-      expect { cnab.content[0][:credit_card_number] == '4753****3153' }
-      expect { cnab.content[0][:store_owner_name] == 'JOÃO MACEDO' }
-      expect { cnab.content[0][:store_name] == 'BAR DO JOÃO' }
+      expect(cnab.content.size).to equal(21)
+      expect(cnab.content[0][:transaction_type]).to eq(3)
+      expect(cnab.content[0][:occurrence_date].strftime('%d/%m/%Y')).to eq('01/03/2019')
+      expect(cnab.content[0][:occurrence_time].strftime('%H:%M:%S')).to eq('15:34:53')
+      expect(cnab.content[0][:occurrence_value]).to eq(142.0)
+      expect(cnab.content[0][:recipient_cpf]).to eq('09620676017')
+      expect(cnab.content[0][:credit_card_number]).to eq('4753****3153')
+      expect(cnab.content[0][:store_owner_name]).to eq('JOÃO MACEDO')
+      expect(cnab.content[0][:store_name]).to eq('BAR DO JOÃO')
     end
 
     it 'should raise CustomErrors::InvaldCnabFileException for invalid transaction type' do

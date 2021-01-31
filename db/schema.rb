@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_01_29_223045) do
     t.string "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["number"], name: "index_credit_cards_on_number"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_01_29_223045) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_owners_on_name"
   end
 
   create_table "recipient_credit_cards", force: :cascade do |t|
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_01_29_223045) do
     t.string "cpf"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["cpf"], name: "index_recipients_on_cpf"
   end
 
   create_table "store_owners", force: :cascade do |t|
@@ -69,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_01_29_223045) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_stores_on_name"
   end
 
   create_table "transaction_types", force: :cascade do |t|
@@ -78,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_01_29_223045) do
     t.string "signal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["type_id"], name: "index_transaction_types_on_type_id"
   end
 
   add_foreign_key "orders", "recipient_credit_cards"

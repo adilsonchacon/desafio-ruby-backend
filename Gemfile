@@ -38,6 +38,7 @@ group :development, :test do
   gem 'timecop', '0.9.2'
   gem 'database_cleaner-active_record', '1.8.0'
   gem 'faker', '2.15.1'
+  gem 'rails-controller-testing', '1.0.5'
 end
 
 group :development do
