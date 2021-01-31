@@ -12,7 +12,7 @@ class StoresController < ApplicationController
     temp_file_path = nil
     file_path = nil
 
-    dir = File.join(Rails.root, 'storage')
+    dir = File.join(Rails.root, "storage#{Rails.env == 'test' ? '-test' : ''}")
     FileUtils.mkdir_p(dir)
 
     begin
@@ -20,10 +20,9 @@ class StoresController < ApplicationController
       file_path = File.join(dir, params['file'].original_filename)
       if !File.exists?(file_path)
         FileUtils.cp(temp_file_path, file_path)
-        cnab = CnabParser.new(file_path)
         begin
-          cnab.parse
-          Order.save_from_cnab_content(cnab.content)
+          cnab = CnabParser.new(file_path)
+          CnabImportJob.perform_now(cnab)
         rescue Exception => e
           FileUtils.rm_f(file_path)
           @error = e.to_s

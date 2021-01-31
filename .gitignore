@@ -23,6 +23,7 @@
 !/storage/.keep
 
 /coverage
+/storage-test
 
 /public/assets
 .byebug_history
