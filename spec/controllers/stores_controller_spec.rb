@@ -49,7 +49,7 @@ RSpec.describe StoresController, type: :controller do
       create_transaction_types
       
       source_file_path = File.join(Rails.root, 'spec', 'fixtures', 'valid_cnab_file.txt')
-      destiny_file_path = File.join(Rails.root, 'cnab-uploads', 'valid_cnab_file.txt')
+      destiny_file_path = File.join(Rails.root, 'storage', 'valid_cnab_file.txt')
       post :upload, params: { file: Rack::Test::UploadedFile.new(source_file_path) }
       expect(assigns(:error)).to be_nil
 
@@ -60,7 +60,7 @@ RSpec.describe StoresController, type: :controller do
       create_transaction_types
       
       source_file_path = File.join(Rails.root, 'spec', 'fixtures', 'valid_cnab_file.txt')
-      destiny_file_path = File.join(Rails.root, 'cnab-uploads', 'valid_cnab_file.txt')
+      destiny_file_path = File.join(Rails.root, 'storage', 'valid_cnab_file.txt')
       post :upload, params: { file: Rack::Test::UploadedFile.new(source_file_path) }
 
       post :upload, params: { file: Rack::Test::UploadedFile.new(source_file_path) }

@@ -12,7 +12,7 @@ class StoresController < ApplicationController
     temp_file_path = nil
     file_path = nil
 
-    dir = File.join(Rails.root, 'cnab-uploads')
+    dir = File.join(Rails.root, 'storage')
     FileUtils.mkdir_p(dir)
 
     begin

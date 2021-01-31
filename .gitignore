@@ -10,7 +10,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
-/cnab-uploads/*
 !/log/.keep
 !/tmp/.keep
 
@@ -22,6 +21,8 @@
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
+
+/coverage
 
 /public/assets
 .byebug_history
