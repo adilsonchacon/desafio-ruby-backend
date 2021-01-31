@@ -45,9 +45,16 @@ RSpec.describe StoresController, type: :controller do
   end
 
   describe "POST #upload" do
-    it "valid file uploaded error should be nil" do
+    after do
+      FileUtils.rm_rf(File.join(Rails.root, 'storage-test'))
+    end
+
+    before do
       create_transaction_types
-      
+      FileUtils.rm_rf(File.join(Rails.root, 'storage-test'))
+    end
+
+    it "valid file uploaded error should be nil" do
       source_file_path = File.join(Rails.root, 'spec', 'fixtures', 'valid_cnab_file.txt')
       destiny_file_path = File.join(Rails.root, 'storage', 'valid_cnab_file.txt')
       post :upload, params: { file: Rack::Test::UploadedFile.new(source_file_path) }
@@ -57,8 +64,6 @@ RSpec.describe StoresController, type: :controller do
     end
 
     it "should set error as 'File already exists' if try to upload same valid file again" do
-      create_transaction_types
-      
       source_file_path = File.join(Rails.root, 'spec', 'fixtures', 'valid_cnab_file.txt')
       destiny_file_path = File.join(Rails.root, 'storage', 'valid_cnab_file.txt')
       post :upload, params: { file: Rack::Test::UploadedFile.new(source_file_path) }
