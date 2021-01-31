@@ -115,17 +115,19 @@ Digite __\q__ e pressione ENTER para sair do console do Postgresql e depois
 
 Para voltar para o seu usuário.
 
-### Instalar o Yarn e o Nodejs
+### Instalar o Yarn, o Nodejs e o NPM
 
 ```sudo apt install yarn```
+
 ```sudo apt install nodejs```
+
 ```sudo apt install npm```
 
 ### Acessar o diretório raiz da aplicação
 
 ```cd /path/to/app```
 
-### Setar a versão correta do Ruby
+### Usar a versão correta do Ruby
 
 ```rvm use ruby-2.7.2```
 
@@ -145,10 +147,10 @@ Configure de acordo com as credenciais do seu Banco de Dados Postgresql
 
 ```npm install```
 
-### Executar a linha de comando: 
+### Criar o esquema do banco de dados: 
 
 ```rails db:setup```
 
-### Executar a linha de comando: 
+### Executar o serviço: 
 
 ```rails s```
