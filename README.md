@@ -77,12 +77,78 @@ Boa sorte!
 
 # Instalando e executando a Aplicação:
 
-1. Instalar o Ruby 2.7.2:
-2. Banco de dados: Postgresql
-3. Instalar o Yarn e o Nodejs
-4. Acessar o diretório raiz da aplicação
-5. Abrir o arquivo config/database.yml e configurar a conexão com o banco de dados
-6. Executar a linha de comando: bundle install
-7. Executar a linha de comando: rails db:setup
-8. Executar a linha de comando: rspec
-9. Executar a linha de comando: rails s
+### Instalar o curl
+
+```apt install curl```
+
+### Instalar o rvm
+
+```curl -sSL https://get.rvm.io | bash```
+
+```source /home/YOUR_USER/.rvm/scripts/rvm```
+
+### Instalar o Ruby 2.7.2:
+
+```rvm install ruby-2.7.2```
+
+### Banco de dados: Postgresql
+
+Instalaçãp
+
+```sudo apt install postgresql postgresql-contrib libpq-dev```
+
+Log como o usuário postgres
+
+```sudo -i -u postgres```
+
+Entre no console do Postgres
+
+```psql```
+
+Crie o seu usuário
+
+```CREATE USER user_name WITH CREATEDB LOGIN PASSWORD 'SuperSecrectPassword123!';```
+
+Digite __\q__ e pressione ENTER para sair do console do Postgresql e depois
+
+```exit```
+
+Para voltar para o seu usuário.
+
+### Instalar o Yarn e o Nodejs
+
+```sudo apt install yarn```
+```sudo apt install nodejs```
+```sudo apt install npm```
+
+### Acessar o diretório raiz da aplicação
+
+```cd /path/to/app```
+
+### Setar a versão correta do Ruby
+
+```rvm use ruby-2.7.2```
+
+### Instalar a gem bundler
+
+```gem install bundler```
+
+### Abrir o arquivo config/database.yml e configurar a conexão com o banco de dados
+
+Configure de acordo com as credenciais do seu Banco de Dados Postgresql
+
+### Executar a linha de comando: bundle install
+
+```bundle install```
+
+### Executar a linha de comando: npm install
+
+```npm install```
+
+### Executar a linha de comando: 
+
+```rails db:setup```
+
+### Executar a linha de comando: 
+
+```rails s```
